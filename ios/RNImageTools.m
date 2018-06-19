@@ -308,8 +308,9 @@ RCT_EXPORT_METHOD(loadThumbnails:(RCTPromiseResolveBlock)resolve
 
 + (NSMutableDictionary*) toDictionary:(PHAsset *)asset imageData:(NSData *)imageData uti:(NSString *)uti orientation:(UIImageOrientation) orientation info:(NSDictionary *)info {
     NSDate *creationDate = [asset creationDate];
-    NSISO8601DateFormatter *dateFormatter = [[NSISO8601DateFormatter alloc] init];
-    NSString *timestamp = [dateFormatter stringFromDate:creationDate];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"h:mm a, d MMM";
+    NSString *timestamp = [formatter stringFromDate:creationDate];
 
     CLLocation *loc = [asset location];
 
